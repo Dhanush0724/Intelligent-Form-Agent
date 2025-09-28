@@ -74,9 +74,10 @@ Holistic Summary:
 The most common city is Bangalore. The birth years range from 1990 to 2025, with an average year of birth around 2004. Across 3 forms, the applicants include: Dhanush V, Kiran R, John Doe.
 
 Screenshot / log placeholder:
+
 ![Alt text](./data/image.png)
 ![Alt text](./data/image1.png)
-![Alt text](./data/image.2png)
+![Alt text](./data/image2.png)
 
 ## output
 ![Alt text](./data/multi-form-insights.png)
