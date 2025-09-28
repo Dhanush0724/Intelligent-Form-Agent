@@ -15,22 +15,25 @@ class FormSummarizer:
     def extract_fields(self, text: str) -> dict:
         """
         Extracts structured fields like name, date of birth, and address from the text.
+        Handles multiple common label variations.
         """
         fields = {}
-        
-        # Name: look for 'Name:' followed by text
-        name_match = re.search(r"Name[:\s]+([A-Za-z\s]+)", text)
+
+        # --- Name: can be "Name", "Applicant", "Full Name"
+        name_match = re.search(r"(?:Name|Applicant|Full\s*Name)\s*:\s*([^\n:]+)", text, re.IGNORECASE)
+
         fields["name"] = name_match.group(1).strip() if name_match else None
 
-        # Date of Birth / Date: look for 'Date:' pattern
-        dob_match = re.search(r"Date[:\s]+(\d{2}/\d{2}/\d{4})", text)
+        # --- DOB: can be "DOB", "Date of Birth", "Birthdate", "Date"
+        dob_match = re.search(r"(?:DOB|Date\s*of\s*Birth|Birthdate|Date)[:\s]+(\d{2}/\d{2}/\d{4})", text, re.IGNORECASE)
         fields["dob"] = dob_match.group(1).strip() if dob_match else None
 
-        # Address: look for 'Address:' followed by text
-        address_match = re.search(r"Address[:\s]+(.+)", text)
+        # --- Address: can be "Address", "Location", "Residence"
+        address_match = re.search(r"(?:Address|Location|Residence)[:\s]+(.+)", text, re.IGNORECASE)
         fields["address"] = address_match.group(1).strip() if address_match else None
 
         return fields
+
 
     def summarize(self, text: str, max_chunk_chars: int = 4000) -> str:
         """

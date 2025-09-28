@@ -41,35 +41,34 @@ def normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def extract_structured_fields(text: str) -> Dict[str, Optional[str]]:
-    """Very small set of regex-based field extractors as a starter.
-    This is intentionally simple — replace/extend with ML-based NER for production.
-    """
+def extract_structured_fields(text: str) -> dict:
+    """Enhanced regex-based extraction for common fields."""
     fields = {"name": None, "email": None, "phone": None, "dob": None, "address": None}
 
-    # email
+    # Email
     m = re.search(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text)
     if m:
         fields["email"] = m.group(0)
 
-    # phone (simple international/local)
+    # Phone (simple international/local)
     m = re.search(r"(\+?\d[\d\-\s]{7,}\d)", text)
     if m:
         fields["phone"] = m.group(0)
 
-    # dob (common patterns)
+    # DOB (common patterns)
     m = re.search(r"\b(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})\b", text)
     if m:
         fields["dob"] = m.group(0)
 
-    # name (heuristic: look for lines starting with Name: or Applicant: )
+    # Name: lines starting with Name:, Applicant:, Full Name:
     m = re.search(r"(?:Name|Applicant|Full Name)[:\s]+([A-Z][A-Za-z ,.'-]{2,100})", text)
     if m:
         fields["name"] = m.group(1).strip()
 
-    # address (naive: lines containing 'Address' capture following text)
-    m = re.search(r"Address[:\s]+(.{5,200})", text)
+    # Address: lines starting with Address:, Location:, Residence:
+    m = re.search(r"(?:Address|Location|Residence)[:\s]+(.{3,200})", text)
     if m:
         fields["address"] = m.group(1).strip()
 
     return fields
+
