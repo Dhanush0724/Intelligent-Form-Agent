@@ -14,7 +14,7 @@ The **Intelligent Form Agent** is a Python-based tool that automatically process
 ### 1. Clone the repository
 ```bash
 git clone <repository_url>
-cd Agent
+cd Intelligent-Form-Agent
 ```
 ### 2. Create a virtual environment
 ```bash
@@ -27,8 +27,9 @@ pip install -r requirements.txt
 ```
 ### Usage
 ## 1. Extract and Summarize a Single Form
-python tests/test_extractor.py
-python tests/test_summarizer.py
+-- python tests/test_extractor.py
+-- python tests/test_summarizer.py
+-- python tests/e2e_multipdf.py
 
 ## 2. Run Question Answering (QA) on a Form
 python tests/test_qa.py
@@ -74,6 +75,13 @@ Holistic Summary:
 The most common city is Bangalore. The birth years range from 1990 to 2025, with an average year of birth around 2004. Across 3 forms, the applicants include: Dhanush V, Kiran R, John Doe.
 
 Screenshot / log placeholder:
+
+![Alt text](./data/image.png)
+![Alt text](./data/image1.png)
+![Alt text](./data/image2.png)
+
+## output
+![Alt text](./data/multi-form-insights.png)
 
 
 Optional Design Notes
