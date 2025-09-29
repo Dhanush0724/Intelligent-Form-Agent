@@ -5,7 +5,7 @@ from src import extractor
 from src.qa_agent import FormQA
 
 def test_form_qa():
-    pdf_path = "data/sample_form.pdf"
+    pdf_path = "data/sample_un.pdf"
     if not os.path.exists(pdf_path):
         print("⚠️ Sample PDF not found.")
         return

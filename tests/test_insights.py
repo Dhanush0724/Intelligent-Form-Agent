@@ -2,7 +2,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from src.extractor import extract_text_from_pdf, extract_structured_fields
+from src.extractor import extract_text_from_pdf, extract_fields
 from src.summarizer import FormSummarizer
 from src.insights import MultiFormInsights
 
@@ -10,7 +10,8 @@ from src.insights import MultiFormInsights
 pdf_files = [
     "data/sample_form1.pdf",
     "data/sample_form2.pdf",
-    "data/sample_form3.pdf"
+    "data/sample_form3.pdf",
+    "data/sample_un.pdf"
 ]
 
 def test_multi_form_insights():
@@ -22,7 +23,7 @@ def test_multi_form_insights():
     for pdf_path in pdf_files:
         print(f"\n=== Processing: {pdf_path} ===\n")
         text = extract_text_from_pdf(pdf_path)
-        fields = extract_structured_fields(text)
+        fields = extract_fields(text)
         summary = summarizer.summarize(text)
         extracted_fields_list.append(fields)
         print("Extracted Fields:", fields)
