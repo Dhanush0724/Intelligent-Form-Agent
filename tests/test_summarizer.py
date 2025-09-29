@@ -10,13 +10,13 @@ def test_chunk_summarization():
         print("⚠️ Sample PDF not found.")
         return
 
-    # Extract text from PDF
+    
     text = extractor.extract_text_from_pdf(pdf_path)
     
-    # Initialize chunk-based summarizer
+    
     summarizer = FormSummarizer()
     
-    # Generate summary
+    
     summary = summarizer.summarize(text)
     print("\n--- Chunk-based Form Summary ---\n")
     print(summary)

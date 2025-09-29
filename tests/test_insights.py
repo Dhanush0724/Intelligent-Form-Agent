@@ -1,4 +1,4 @@
-# tests/test_insights.py
+
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -6,7 +6,6 @@ from src.extractor import extract_text_from_pdf, extract_fields
 from src.summarizer import FormSummarizer
 from src.insights import MultiFormInsights
 
-# Sample PDF files
 pdf_files = [
     "data/sample_form1.pdf",
     "data/sample_form2.pdf",
@@ -29,7 +28,7 @@ def test_multi_form_insights():
         print("Extracted Fields:", fields)
         print("Summary:", summary, "\n")
 
-    # Generate multi-form insights
+    
     insights = multi_insights.process_forms(extracted_fields_list)
     print("\n=== Multi-Form Insights ===")
     print("Total Forms Processed:", insights["total_forms"])

@@ -5,7 +5,7 @@ import pdfplumber
 from typing import Dict
 
 def extract_text_from_pdf(path: str) -> str:
-    """Try digital text extraction first; if empty, fall back to OCR pages."""
+    
     text_parts = []
     try:
         with pdfplumber.open(path) as pdf:
@@ -19,7 +19,7 @@ def extract_text_from_pdf(path: str) -> str:
     if text.strip():
         return text
 
-    # fallback: OCR using pdf2image + pytesseract
+    
     try:
         from pdf2image import convert_from_path
         import pytesseract
@@ -44,7 +44,7 @@ def extract_fields(text: str) -> Dict[str, str]:
         "current_role": None, "reason_for_applying": None, "comments": None
     }
 
-    # Structured field patterns (same as before)...
+    
     m = re.search(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text)
     if m: fields["email"] = m.group(0)
 
@@ -60,7 +60,7 @@ def extract_fields(text: str) -> Dict[str, str]:
     m = re.search(r"(?:Address|Location|Residence)[:\s]+(.{3,200})", text)
     if m: fields["address"] = m.group(1).strip()
 
-    # 🔹 Unstructured fallback patterns
+    
     m = re.search(r"I[, ]+\s*([A-Z][A-Za-z ]+)\s*,\s*born", text, re.IGNORECASE)
     if m: fields["name"] = m.group(1).strip()
 
@@ -70,7 +70,7 @@ def extract_fields(text: str) -> Dict[str, str]:
     m = re.search(r"(?:reside|living) at\s+([A-Za-z ,]+)", text, re.IGNORECASE)
     if m: fields["address"] = m.group(1).strip()
 
-    # Unstructured extras (optional, if text has them)
+    
     patterns = {
         "current_role": r"(?:currently working as|my role is)\s+([A-Za-z ]+)",
         "reason_for_applying": r"(?:because|reason.*apply is)\s+([^.]+)",
@@ -85,7 +85,7 @@ def extract_fields(text: str) -> Dict[str, str]:
 
 
 if __name__ == "__main__":
-    pdf_path = "form.pdf"  # Replace with your file
+    pdf_path = "form.pdf"  
     raw_text = extract_text_from_pdf(pdf_path)
     clean_text = normalize_text(raw_text)
 

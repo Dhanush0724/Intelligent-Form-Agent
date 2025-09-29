@@ -12,12 +12,12 @@ def run_pipeline(pdf_path: str):
         print("⚠️ File not found.")
         return
 
-    # Step 1: Extract text
+   
     text = extractor.extract_text_from_pdf(pdf_path)
     print("\n--- Extracted Text ---")
     print(text)
 
-    # Step 2: QA
+    
     print("\n--- Question Answering ---")
     qa_agent = FormQA()
     questions = [
@@ -29,7 +29,7 @@ def run_pipeline(pdf_path: str):
         answer = qa_agent.answer_question(text, q)
         print(f"Q: {q}\nA: {answer}\n")
 
-    # Step 3: Summarization with structured fields
+    
     print("\n--- Summarization with Structured Fields ---")
     summarizer = FormSummarizer()
     result = summarizer.summarize_with_fields(text)
@@ -38,7 +38,7 @@ def run_pipeline(pdf_path: str):
 
 def test_multiple_forms():
     data_dir = "data"
-    sample_files = ["sample_form1.pdf", "sample_form2.pdf", "sample_form3.pdf"]
+    sample_files = ["sample_form1.pdf", "sample_form2.pdf", "sample_form3.pdf","sample_un.pdf"]
     for fname in sample_files:
         run_pipeline(os.path.join(data_dir, fname))
 

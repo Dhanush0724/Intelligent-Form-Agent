@@ -1,7 +1,4 @@
-"""
-Simple retrieval QA: embed chunks with Sentence-Transformers + FAISS and answer by returning
-best-matching context snippets.
-"""
+
 from typing import List, Tuple, Dict, Any
 from sentence_transformers import SentenceTransformer
 import numpy as np

@@ -1,6 +1,4 @@
-"""
-Tiny CLI demonstrating extract / summarize / qa flows.
-"""
+
 import argparse
 from pathlib import Path
 

@@ -13,12 +13,12 @@ def test_end_to_end():
         print("⚠️ Sample PDF not found.")
         return
 
-    # Step 1: Extract text from PDF
+    
     print("\n--- Extracting Text ---")
     text = extractor.extract_text_from_pdf(pdf_path)
     print(text)
 
-    # Step 2: QA
+    
     print("\n--- Question Answering ---")
     qa_agent = FormQA()
     questions = [
@@ -30,7 +30,7 @@ def test_end_to_end():
         answer = qa_agent.answer_question(text, q)
         print(f"Q: {q}\nA: {answer}\n")
 
-    # Step 3: Summarization with structured fields
+    
     print("\n--- Summarization with Structured Fields ---")
     summarizer = FormSummarizer()
     result = summarizer.summarize_with_fields(text)

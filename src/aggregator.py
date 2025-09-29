@@ -1,6 +1,4 @@
-"""
-Aggregate structured fields extracted from multiple forms into a DataFrame and provide simple stats.
-"""
+
 from typing import List, Dict
 import pandas as pd
 

@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from src import extractor  # import functions
+from src import extractor  
 
 def test_pdf_extraction():
     pdf_path = "data/sample_un.pdf"
@@ -9,7 +9,7 @@ def test_pdf_extraction():
     if os.path.exists(pdf_path):
         text = extractor.extract_text_from_pdf(pdf_path)
         norm_text = extractor.normalize_text(text)
-        fields = extractor.extract_fields(norm_text)  # ✅ updated here
+        fields = extractor.extract_fields(norm_text)  
         print("\n--- Extracted PDF Text ---\n")
         print(norm_text)
         print("\n--- Extracted Fields ---\n")
