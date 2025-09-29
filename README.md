@@ -33,21 +33,18 @@ pip install -r requirements.txt
 
 ## 2. Run Question Answering (QA) on a Form
 python tests/test_qa.py
-
+### TO Cover all Coverage run this insights ->
 ## 3. Multi-Form Insights
+``` bash
 python tests/test_insights.py
-
+```
 Example Queries & Outputs
 Example 1 – Single Form QA
-
 Question: What is the applicant's name?
 Answer: Dhanush V
-
 Example 2 – Summarization with Structured Fields
-
 Input: Full form text
 Output:
-
 {
   "extracted_fields": {
     "name": "Dhanush V",
@@ -57,12 +54,7 @@ Output:
   "summary": "Name: Dhanush V. Date: 27/09/2025 Address: Bangalore Generated with https://kome.ai"
 }
 
-
-Screenshot / log placeholder:
-
-
 Example 3 – Multi-Form Insights
-
 ### Insight Summary:
 
 Total forms processed: 3
@@ -74,19 +66,16 @@ Addresses: Bangalore
 Holistic Summary:
 The most common city is Bangalore. The birth years range from 1990 to 2025, with an average year of birth around 2004. Across 3 forms, the applicants include: Dhanush V, Kiran R, John Doe.
 
-Screenshot / log placeholder:
+Screenshots:
+# pdf files content
+![Alt text](./images/image.png)
+![Alt text](./images/image1.png)
+![Alt text](./images/image2.png)
 
-![Alt text](./data/image.png)
-![Alt text](./data/image1.png)
-![Alt text](./data/image2.png)
+## Final Output with Summary and Key Insights (Includes Screenshot)
+![Alt text](./images/multi-form-insights.png)
 
-## output
-![Alt text](./data/multi-form-insights.png)
-
-
-Optional Design Notes
-
-Pipeline Overview:
+## Pipeline Overview:
 Extraction: pdfplumber for digital text extraction with OCR fallback using pytesseract.
 Structured Fields: Regex-based extraction of key fields (name, DOB, address, email, phone).
 QA: Hugging Face transformers (distilbert-base-uncased-distilled-squad) for answering questions.
@@ -99,4 +88,4 @@ Notes
 
 Ensure all sample PDFs are placed in the /data directory.
 Logs and outputs can be found in /tests when running test scripts.
-Creative extensions such as UI or advanced reasoning modules can be added in /src/extensions with proper documentation.
+
